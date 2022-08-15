@@ -28,6 +28,7 @@ public class EmployeeController {
 	
 	@Autowired
 	EmployeeServiceImpl employeeServideImpl;
+	Jobs jobs;
 	
 	@GetMapping("/employees")
 	public List<Employee> listEmployees(){
@@ -36,7 +37,7 @@ public class EmployeeController {
 	
 	//list Customers by name field
 	@GetMapping("/employees/name/{name}")
-	public List<Employee> listarClienteNombre(@PathVariable(name="name") String name) {
+	public List<Employee> listEmployeesName(@PathVariable(name="name") String name) {
 	    return employeeServideImpl.listEmployeeName(name);
 	}
 	
@@ -71,6 +72,7 @@ public class EmployeeController {
 		employee_selected.setName(employee.getName());
 		employee_selected.setSurname(employee.getSurname());
 		employee_selected.setJob(employee.getJob());
+		employee_selected.setSalary(employee.getSalary());
 		employee_selected.setDni(employee.getDni());
 		employee_selected.setDate(employee.getDate());
 		
