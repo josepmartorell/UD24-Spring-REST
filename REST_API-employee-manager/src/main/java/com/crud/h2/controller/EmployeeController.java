@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.crud.h2.dto.Employee;
+import com.crud.h2.dto.Jobs;
 import com.crud.h2.service.EmployeeServiceImpl;
 
 /**

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.crud.h2.controller;
+package com.crud.h2.dto;
 
 /**
  * @author jtech
