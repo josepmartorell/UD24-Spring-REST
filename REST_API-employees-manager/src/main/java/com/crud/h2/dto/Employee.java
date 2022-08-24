@@ -1,6 +1,7 @@
 package com.crud.h2.dto;
 
 import java.util.Date;
+import java.util.Hashtable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +26,7 @@ public class Employee {
 	@Column(name = "job")
 	private String job;
 	@Column(name = "salary")
-	private float salary;
+	private Double salary;
 	@Column(name = "dni")
 	private int dni;
 	@Temporal(TemporalType.TIMESTAMP)
@@ -48,16 +49,19 @@ public class Employee {
 	 * @param dni
 	 * @param date
 	 */
-	public Employee(Long id, String name, String surname, String job, float salary, int dni, Date fecha) {
+	public Employee(Long id, String name, String surname, String job, int dni, Date fecha) {
 		super();
+		Hashtable<String, Double> assign = assignSalary();
 		this.id = id;
 		this.name = name;
 		this.surname = surname;
 		this.job = job;
-		this.salary = salary;
+		System.out.println(assign.get(job));
+		this.salary = assign.get(job);
 		this.dni = dni;
 		this.fecha = fecha;
 	}	
+	
 	//GETTERS AND SETTERS
 	/**
 	 * @return the id
@@ -118,14 +122,14 @@ public class Employee {
 	/**
 	 * @return the salary
 	 */
-	public float getSalary() {
+	public Double getSalary() {
 		return salary;
 	}
 
 	/**
 	 * @param salary the salary to set
 	 */
-	public void setSalary(float salary) {
+	public void setSalary(Double salary) {
 		this.salary = salary;
 	}
 
@@ -162,6 +166,18 @@ public class Employee {
 	public String toString() {
 		return "Employee [id=" + id + ", name=" + name + ", surname=" + surname + ", job=" + job + ", salary=" + salary
 				+ ", dni=" + dni + ", date=" + fecha + "]";
+	}
+	
+	//AUTOMATIC INSERTION OF SALARIES ACCORDING TO PROFESSION
+	public Hashtable<String, Double> assignSalary() {
+		String jobs[] = {"AWS Engineer","Java Developer","React Engineer","Project Manager","Python Developer"};
+	    Double salaries[] = {60000.00, 45000.00, 34000.00, 42000.00, 29000.00};
+		
+		Hashtable<String, Double> assignment = new Hashtable<String, Double>();
+		for (int j = 0; j < salaries.length; j++) {
+			assignment.put(jobs[j], salaries[j]);
+		}	
+		return assignment;
 	}
 	
 
